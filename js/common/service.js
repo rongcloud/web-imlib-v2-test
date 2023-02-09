@@ -63,7 +63,18 @@
       config.logLevel = 0
       config.typingExpireTime = 5000
       RongIMClient.init(appkey, '', config);
-      RongIMClient.setConnectionStatusListener({
+      // 5.7.0 版本之前的方法
+      // RongIMClient.setConnectionStatusListener({
+      //   onChanged: function (status) {
+      //     // 不处理的状态码
+      //     var unHandleStatus = [];
+      //     if (unHandleStatus.indexOf(status) === -1) {
+      //       watcher.status(status);
+      //     }
+      //   }
+      // });
+      // 5.7.0 版本之前的方法
+      RongIMClient.onConnectionStatusChange({
         onChanged: function (status) {
           // 不处理的状态码
           var unHandleStatus = [];
@@ -72,6 +83,7 @@
           }
         }
       });
+
       RongIMClient.setOnReceiveMessageListener({
         onReceived: watcher.message
       });
